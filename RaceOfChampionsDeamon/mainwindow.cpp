@@ -77,7 +77,9 @@ void MainWindow::readData()
 {
     if(serial->canReadLine())
     {
-        ui->tb_recieve->appendPlainText("Recieve Serial: "+serial->readLine());
+        QString data_serial = serial->readLine();
+        if(!data_serial.contains("$")) ui->tb_recieve->appendPlainText("Recieve Serial: "+data_serial);
+        sendSocket(data_serial);
     }
 }
 
@@ -146,10 +148,7 @@ void MainWindow::processMessage(const QString &message)
     qDebug() << message;
     ui->tb_recieve->appendPlainText("Recieved websocket: "+message);
     sendDataSerial(message);
-    //QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-    for (QWebSocket *pClient : qAsConst(m_clients)) {
-            pClient->sendTextMessage(message);
-    }
+
 }
 //! [processMessage]
 
@@ -163,6 +162,11 @@ void MainWindow::socketDisconnected()
         m_clients.removeAll(pClient);
         pClient->deleteLater();
     }
+}
+
+void MainWindow::sendSocket(QString data)
+{
+    for (QWebSocket *pClient : qAsConst(m_clients)) pClient->sendTextMessage(data);
 }
 
 static QString getIdentifier(QWebSocket *peer)

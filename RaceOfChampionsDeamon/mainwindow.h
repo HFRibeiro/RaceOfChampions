@@ -56,6 +56,8 @@ private slots:
 
     void socketDisconnected();
 
+    void sendSocket(QString data);
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *serial;
