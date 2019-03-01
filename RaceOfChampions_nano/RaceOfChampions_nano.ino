@@ -33,7 +33,7 @@ int voltasBLUE = 0;
 bool LEFT = true,RIGHT = true;
 bool BLUE = true,RED = true;
 
-bool RaceOn = false;
+bool RaceOn = false,setupRaceButtons = false;
 
 bool passEsq = false,passDir = false;
 
@@ -245,25 +245,46 @@ void checkButtons()
 
   if(keystate==BUTTON_GREEN && keystate!=keystate_old)
   {
-    if(!RaceOn)
+    if(!setupRaceButtons)
     {
       setupRace();
+      setupRaceButtons = true;
     }
     else
     {
       startRace();
+      setupRaceButtons = false;
     }
 
     keystate_old = keystate;
   }
   else if(keystate==BUTTON_RED && keystate!=keystate_old)
   {
-    comandALL(8);
+    if (posicaoBLUE == 1)
+    {
+      I2C_Comand(3,8);
+      I2C_Comand(4,8);
+    }
+    else
+    {
+      I2C_Comand(1,8);
+      I2C_Comand(2,8);
+    }
+    
     keystate_old = keystate;
   }
   else if(keystate==BUTTON_BLUE && keystate!=keystate_old)
   {
-    comandALL(7);
+    if (posicaoBLUE == 1)
+    {
+      I2C_Comand(1,8);
+      I2C_Comand(2,8);
+    }
+    else
+    {
+      I2C_Comand(3,8);
+      I2C_Comand(4,8);
+    }
     keystate_old = keystate;
   }
   if(keystate!=keystate_old) keystate_old = keystate;
@@ -489,7 +510,6 @@ void FinalRaceEsq()
 
     I2C_Comand(3,9);
     I2C_Comand(4,9);
-    
 }
 
 void FinalRaceDir()
@@ -530,6 +550,3 @@ void laser2_event()
     timeStampINT1 = millis();
   }
 }
-
-
-
