@@ -42,7 +42,7 @@
 
 	for($i=0;$i<$TotalTeams;$i++)
 	{
-		$teams = split(';', $EQUIPA[$i]);
+		$teams = explode(';', $EQUIPA[$i]);
 		$sql_select2="INSERT INTO `".$banco_dados."`.`".$nome_tabela."` (`id`, `nome`, `tempo`, `voltas`) VALUES ('".$teams[0]."', '".$teams[1]."', '".$teams[2]."', '".$teams[3]."');";
 		try
 		{

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-QString serial_port_name = "/dev/ttyUSB0";
+QString serial_port_name = "COM9";
 int port = 1234;
 
 using namespace std;

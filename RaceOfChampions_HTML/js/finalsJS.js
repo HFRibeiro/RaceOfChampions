@@ -144,6 +144,7 @@ $(document).ready(function() {
 				check:"RoboParty"
 				})
 				.done(function( data ) {
+					console.log(data);
 					window.location.href = "checkfinals.php";
 				});
 		}
@@ -296,6 +297,7 @@ $(document).ready(function() {
 						pos:OnPosNow+"T1L",valor:vitorias
 						})
 						.done(function( data ) {
+							console.log(data);
 						});
 
 						addPositionTeam(OnPosNow,team1Name,vitorias,team2Name);
@@ -310,6 +312,7 @@ $(document).ready(function() {
 						pos:OnPosNow+"T2L",valor:vitorias
 						})
 						.done(function( data ) {
+							console.log(data);
 						});
 						addPositionTeam(OnPosNow,team1Name,vitorias,team2Name);
 					 }
@@ -326,6 +329,7 @@ $(document).ready(function() {
 							pos:OnPosNow+"T1L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team2Name,vitorias,team1Name);
 						 }
@@ -337,6 +341,7 @@ $(document).ready(function() {
 							pos:OnPosNow+"T2L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team2Name,vitorias,team1Name);
 						 }
@@ -350,10 +355,12 @@ $(document).ready(function() {
 							var vitorias = document.getElementById(OnPosNow+"T1L").innerHTML;
 							vitorias++;
 							document.getElementById(OnPosNow+"T1L").innerHTML = vitorias;
+							console.log(OnPosNow+"T1L "+vitorias);
 							$.post( "updateResults.php", {
 							pos:OnPosNow+"T1L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team2Name,vitorias,team1Name);
 						 }
@@ -361,10 +368,12 @@ $(document).ready(function() {
 							var vitorias = document.getElementById(OnPosNow+"T2L").innerHTML;
 							vitorias++;
 							document.getElementById(OnPosNow+"T2L").innerHTML = vitorias;
+							console.log(OnPosNow+"T2L "+vitorias);
 							$.post( "updateResults.php", {
 							pos:OnPosNow+"T2L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team2Name,vitorias,team1Name);
 						 }
@@ -376,10 +385,12 @@ $(document).ready(function() {
 						var vitorias = document.getElementById(OnPosNow+"T1L").innerHTML;
 						vitorias++;
 						document.getElementById(OnPosNow+"T1L").innerHTML = vitorias;
+						console.log(OnPosNow+"T1L "+vitorias);
 						$.post( "updateResults.php", {
 							pos:OnPosNow+"T1L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team1Name,vitorias,team2Name);
 		  			 }
@@ -387,10 +398,12 @@ $(document).ready(function() {
 						var vitorias = document.getElementById(OnPosNow+"T2L").innerHTML;
 						vitorias++;
 						document.getElementById(OnPosNow+"T2L").innerHTML = vitorias;
+						console.log(OnPosNow+"T1L "+vitorias);
 						$.post( "updateResults.php", {
 							pos:OnPosNow+"T2L",valor:vitorias
 							})
 							.done(function( data ) {
+								console.log(data);
 							});
 							addPositionTeam(OnPosNow,team1Name,vitorias,team2Name);
 					 }
@@ -720,95 +733,105 @@ $(document).ready(function() {
 
 
 
-	function addPositionTeam(positT,nameT,vitoriasT,otherTeam)
-	{
-		if(limitPass==vitoriasT){
-			var goTo = "";
-			if(positT == "O1") goTo = "Q1T1";
-			else if(positT == "O2") goTo = "Q1T2";
-			else if(positT == "O3") goTo = "Q2T1";
-			else if(positT == "O4") goTo = "Q2T2";
-			else if(positT == "O5") goTo = "Q3T1";
-			else if(positT == "O6") goTo = "Q3T2";
-			else if(positT == "O7") goTo = "Q4T1";
-			else if(positT == "O8") goTo = "Q4T2";
+			function addPositionTeam(positT,nameT,vitoriasT,otherTeam)
+			{
+				console.log("addPositionTeam "+positT+" - "+nameT+" - "+vitoriasT+" - "+otherTeam+" - "+limitPass);
+				if(vitoriasT>=limitPass)
+				{
+					var goTo = "";
+					if(positT == "O1") goTo = "Q1T1";
+					else if(positT == "O2") goTo = "Q1T2";
+					else if(positT == "O3") goTo = "Q2T1";
+					else if(positT == "O4") goTo = "Q2T2";
+					else if(positT == "O5") goTo = "Q3T1";
+					else if(positT == "O6") goTo = "Q3T2";
+					else if(positT == "O7") goTo = "Q4T1";
+					else if(positT == "O8") goTo = "Q4T2";
 
-			else if(positT == "Q1") goTo = "M1T1";
-			else if(positT == "Q2") goTo = "M1T2";
-			else if(positT == "Q3") goTo = "M2T1";
-			else if(positT == "Q4") goTo = "M2T2";
+					else if(positT == "Q1") goTo = "M1T1";
+					else if(positT == "Q2") goTo = "M1T2";
+					else if(positT == "Q3") goTo = "M2T1";
+					else if(positT == "Q4") goTo = "M2T2";
 
-			else if(positT == "M1") goTo = "F1T1";
-			else if(positT == "M2") goTo = "F1T2";
-			else if(positT == "T1") {
+					else if(positT == "M1") goTo = "F1T1";
+					else if(positT == "M2") goTo = "F1T2";
+					else if(positT == "T1") 
+					{
 
-				if(document.getElementById("T1T1").innerHTML == nameT){
-					document.getElementById("T1T1L").innerHTML = "";
-					document.getElementById("T1T1DIV").style.width = "100%";
-					document.getElementById("T1T1DIV").style.height = "60%";
-					document.getElementById("T1T2DIV").style.display = "none";
-				}
-				else{
-					document.getElementById("T1T2L").innerHTML = "";
-					document.getElementById("T1T2DIV").style.width = "100%";
-					document.getElementById("T1T2DIV").style.height = "60%";
-					document.getElementById("T1T1DIV").style.display = "none";
-				}
-				document.getElementById("VSFT").style.display = "none";
+						if(document.getElementById("T1T1").innerHTML == nameT){
+							document.getElementById("T1T1L").innerHTML = "";
+							document.getElementById("T1T1DIV").style.width = "100%";
+							document.getElementById("T1T1DIV").style.height = "60%";
+							document.getElementById("T1T2DIV").style.display = "none";
+						}
+						else{
+							document.getElementById("T1T2L").innerHTML = "";
+							document.getElementById("T1T2DIV").style.width = "100%";
+							document.getElementById("T1T2DIV").style.height = "60%";
+							document.getElementById("T1T1DIV").style.display = "none";
+						}
+						document.getElementById("VSFT").style.display = "none";
 
+					}
+					else if(positT == "F1") 
+					{
+						document.getElementById("winner").innerHTML = nameT;
+						document.getElementById("winner").style.display = "inherit";
+					}
+
+					if(positT != "T1" && positT != "F1")
+					{
+						console.log("goTo: "+goTo+" name:"+nameT);
+						$.post( "addposition.php", {
+						pos:goTo,name:nameT
+						})
+						.done(function( data ) {
+							console.log(data);
+							//alert(data);
+						});
+					}
+
+					if(goTo=="F1T1")
+					{
+						document.getElementById("F1T1").innerHTML = nameT;
+						document.getElementById("F1T1L").innerHTML = "0";
+
+						$.post( "addposition.php", {
+							pos:"T1T1",name:otherTeam
+							})
+							.done(function( data ) {
+								console.log(data);
+								//alert(data);
+							});
+
+						document.getElementById("T1T1").innerHTML = otherTeam;
+						document.getElementById("T1T1L").innerHTML = "0";
+					}
+					else if(goTo=="F1T2")
+					{
+						document.getElementById("F1T2").innerHTML = nameT;
+						document.getElementById("F1T2L").innerHTML = "0";
+
+						$.post( "addposition.php", {
+							pos:"T1T2",name:otherTeam
+							})
+							.done(function( data ) {
+								console.log(data);
+								//alert(data);
+							});
+
+						document.getElementById("T1T2").innerHTML = otherTeam;
+						document.getElementById("T1T2L").innerHTML = "0";
+					}
+					else 
+					{
+						document.getElementById(goTo).innerHTML = nameT;
+						document.getElementById(goTo+"L").innerHTML = "0";
+					}
+
+					console.log("goTo: "+goTo);
 			}
-			else if(positT == "F1") {
-				document.getElementById("winner").innerHTML = nameT;
-				document.getElementById("winner").style.display = "inherit";
-			}
-
-			if(positT != "T1" && positT != "F1"){
-			 $.post( "addposition.php", {
-				pos:goTo,name:nameT
-				})
-				.done(function( data ) {
-					//alert(data);
-				});
-			}
-
 		}
-		if(goTo=="F1T1")
-		{
-			document.getElementById("F1T1").innerHTML = nameT;
-			document.getElementById("F1T1L").innerHTML = "0";
-
-			$.post( "addposition.php", {
-				pos:"T1T1",name:otherTeam
-				})
-				.done(function( data ) {
-					//alert(data);
-				});
-
-			document.getElementById("T1T1").innerHTML = otherTeam;
-			document.getElementById("T1T1L").innerHTML = "0";
-		}
-		else if(goTo=="F1T2")
-		{
-			document.getElementById("F1T2").innerHTML = nameT;
-			document.getElementById("F1T2L").innerHTML = "0";
-
-			$.post( "addposition.php", {
-				pos:"T1T2",name:otherTeam
-				})
-				.done(function( data ) {
-					//alert(data);
-				});
-
-			document.getElementById("T1T2").innerHTML = otherTeam;
-			document.getElementById("T1T2L").innerHTML = "0";
-		}
-		else {
-		document.getElementById(goTo).innerHTML = nameT;
-		document.getElementById(goTo+"L").innerHTML = "0";
-		}
-	}
-
-
 });
 
 
@@ -851,6 +874,7 @@ function generateTeams()
    	check:"RoboParty"
 	})
 	.done(function( data ) {
+		console.log(data);
 	});
 
     var num = 0;

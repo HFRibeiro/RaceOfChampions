@@ -19,6 +19,7 @@
 		Foreach($primary_search as $match)
 		{
 			$oldPos = $match['positions'];
+			$idTeam = $match['idTeam'];
 		}
 
 	}
@@ -27,11 +28,13 @@
 	}
 
 
-	$query = "UPDATE `".$banco_dados."`.`finalsteams` SET `positions` = '".$oldPos."' WHERE `finalsteams`.`nomeTeam` = '".$name."';";
+	//$query = "UPDATE `".$banco_dados."`.`finalsteams` SET `positions` = '".$pos."' WHERE `finalsteams`.`nomeTeam` = '".$name."';";
+	$query = "INSERT INTO `finalsteams` (`id`, `idTeam`, `nomeTeam`, `positions`) VALUES (NULL, '".$idTeam."', '".$name."', '".$pos."');";
 	try
 	{
 		$stmt = $pdo->prepare($query);
 		$data = $stmt->execute();
+		echo $query."<br>";
 	}
 	catch (PDOException $e) {
 		echo "Error: " . $e->getMessage() . "<br />\n";
@@ -45,6 +48,7 @@
 	{
 		$stmt = $pdo->prepare($query);
 		$data = $stmt->execute();
+		echo $query."<br>";
 	}
 	catch (PDOException $e) {
 		echo "Error: " . $e->getMessage() . "<br />\n";

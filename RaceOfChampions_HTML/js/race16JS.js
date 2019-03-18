@@ -138,6 +138,7 @@ $(document).ready(function() {
 				check:"RoboParty"
 				})
 				.done(function( data ) {
+					console.log(data);
 					window.location.href = "checkfinals.php";
 				});
 			} else {
@@ -330,7 +331,7 @@ $(document).ready(function() {
 				id:id1ONRace , tempo: displ1, voltas: voltasId1
 				})
 			  .done(function( data ) {
-
+					console.log(data);
 				//alert(id1ONRace+": "+data);
 			  });
 
@@ -338,6 +339,7 @@ $(document).ready(function() {
 				id: id2ONRace, tempo: displ2, voltas: voltasId2
 				})
 			  .done(function( data ) {
+					console.log(data);
 				//alert(id2ONRace+": "+data);
 			  });
 

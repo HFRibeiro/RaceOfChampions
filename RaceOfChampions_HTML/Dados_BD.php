@@ -3,7 +3,7 @@
 
 		$user="root";
 
-		$senha="sar";
+		$senha="";
 
 		$banco_dados="raceofchampions";
 

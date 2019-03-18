@@ -121,12 +121,12 @@ $Colors = explode(';', $colorsLaps);
 <div id="brcode2">BarCodeRed:<input id="barcodeRed" onChange="changeBarcodeRed()"></input><div id="bt_accept_red" class="bt_accept bts hvr-float-shadow">Accept Red</div></div>
 </div>
 <div id="scrollHide"></div>
-<div id="bottomPub"><textarea id="debugTextArea"></textarea></div>
+<div id="bottomPub"><textarea id="debugTextArea" style="display:none;"></textarea></div>
 <div id="maxima"></div>
 <div id="GetReady">3</div>
 <div id="configs" class="masterTooltip" title="Back to configure"></div>
 <div id="finals" class="masterTooltip" title="Navigate to finals"></div>
-<div id="raceOfChamps">&nbsp;&nbsp;&nbsp;&nbsp;RoboParty RaceOfChampions Best10&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div id="raceOfChamps">&nbsp;&nbsp;&nbsp;&nbsp;RoboParty RaceOfChampions Best16&nbsp;&nbsp;&nbsp;&nbsp;</div>
 <div id="connection" title="Disconnected" ></div>
 <div id="ruminho"></div>
 </body>

@@ -11,7 +11,7 @@
 	{
 		$stmt = $pdo->prepare($query);
 		$data = $stmt->execute();
-
+		echo "Done: ".$query;
 
 	}
 	catch (PDOException $e) {
